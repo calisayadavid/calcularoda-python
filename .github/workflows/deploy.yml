@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Clonar código
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
 
       - name: Compilar Flet Web
         run: |
-          flet build web . --base /${{ github.event.repository.name }}/ -y
+          flet build web . --base /${{ github.event.repository.name }}/
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
