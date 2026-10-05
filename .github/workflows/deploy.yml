@@ -20,14 +20,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Instalar dependencias
+      - name: Configurar Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Instalar dependencias de Python
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Compilar Flet Web
         run: |
-          flet build web . --base /${{ github.event.repository.name }}/
+          flet build web . --base /${{ github.event.repository.name }}/ -y
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
