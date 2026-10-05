@@ -27,7 +27,7 @@ jobs:
 
       - name: Compilar Flet Web
         run: |
-          flet build web "ejemplo-calc.py" --base /${{ github.event.repository.name }}/
+          flet build web . --base /${{ github.event.repository.name }}/
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
