@@ -33,14 +33,17 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          cache: true
 
       - name: Install dependencies
         run: |
-          pip install flet
+          pip install --upgrade pip
+          pip install flet flet-cli
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Build Web with Base URL
-        run: flet build web --base-url /${{ github.event.repository.name }}/
+        # Se añade -y para aceptar instalaciones automáticas sin esperar entrada por teclado
+        run: flet build web -y --base-url /${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
